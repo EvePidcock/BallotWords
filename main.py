@@ -42,8 +42,11 @@ def hook(tableau):
     # issue if the integer limit is hit. I can't remember how Python deals with that, though.
     for m in range(1, k+1):
         for j in range(2, m+1):
+            #print(f"multiplying by {(tableau[j - 2] - tableau[m - 1] + m - j + 1)}")
             x *= (tableau[j - 2] - tableau[m - 1] + m - j + 1)
+        #print(f"dividing by {math.factorial(tableau[m - 1] + k - m)}")
         x /= math.factorial(tableau[m - 1] + k - m)
+
 
     # (Debug)
     # print(tableau, round(x))
