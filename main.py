@@ -11,7 +11,7 @@ def ballot(k, maxLength):
     for n in range(1, maxLength + 1):
 
         # Get a list of all valid tableau shapes
-        tableaux = generateTableaux(maxParts=k, n=n)
+        tableaux = generateTableaux(maxParts=min(k, n), n=n)
 
         # Initiate the total
         total = 0
