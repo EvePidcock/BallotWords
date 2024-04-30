@@ -36,17 +36,11 @@ def hook(tableau):
     # The numerator of the expression is n!
     x = math.factorial(sum(tableau))
 
-    # My implementation of the hook length formula. This is a slightly simplified version with only one
-    # factorial per m value (k total) instead of the original with two factorials for every j value (k^2-k total).
-    # In theory, if the multiplications get too big before the division step brings it back down, there may be an
-    # issue if the integer limit is hit. I can't remember how Python deals with that, though.
+    # My implementation of the hook length formula. Hits the integer limit (at n=10) when k=162.
     for m in range(1, k+1):
-        for j in range(2, m+1):
-            #print(f"multiplying by {(tableau[j - 2] - tableau[m - 1] + m - j + 1)}")
-            x *= (tableau[j - 2] - tableau[m - 1] + m - j + 1)
-        #print(f"dividing by {math.factorial(tableau[m - 1] + k - m)}")
-        x /= math.factorial(tableau[m - 1] + k - m)
-
+        for j in range(1, m+1):
+            x *= math.factorial(tableau[j - 1] - tableau[m - 1] + m - j)
+            x /= math.factorial(tableau[j - 1] - tableau[m] + m - j)
 
     # (Debug)
     # print(tableau, round(x))
